@@ -1,0 +1,6 @@
+{
+  "name": "ناقل",
+  "description": "تطبيق لنقل ومشاركة الملفات بسرعة فائقة وبدون إنترنت باستخدام تقنية Wi-Fi Direct ومخزن للأرقام وسجل للعمليات",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
