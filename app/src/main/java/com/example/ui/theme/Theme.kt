@@ -7,30 +7,61 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val CosmicColorScheme = lightColorScheme(
-    primary = ElectroCyan,
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFFEEF2FF),
-    onPrimaryContainer = ElectroCyan,
-    secondary = ElectroCyan,
-    onSecondary = Color.White,
-    background = DarkSlate,
-    onBackground = TextLight,
-    surface = SlateCard,
-    onSurface = TextLight,
-    error = LaserMagenta
+private val DarkSapphireColorScheme = darkColorScheme(
+    primary = SapphirePrimaryDark,
+    onPrimary = SapphireOnPrimaryDark,
+    primaryContainer = SapphirePrimaryContainerDark,
+    onPrimaryContainer = SapphireOnPrimaryContainerDark,
+    secondary = SapphireSecondaryDark,
+    onSecondary = SapphireOnSecondaryDark,
+    secondaryContainer = SapphireSecondaryContainerDark,
+    onSecondaryContainer = SapphireOnSecondaryContainerDark,
+    tertiary = SapphireTertiaryDark,
+    onTertiary = SapphireOnTertiaryDark,
+    tertiaryContainer = SapphireTertiaryContainerDark,
+    onTertiaryContainer = SapphireOnTertiaryContainerDark,
+    background = SapphireBackgroundDark,
+    onBackground = SapphireOnBackgroundDark,
+    surface = SapphireSurfaceDark,
+    onSurface = SapphireOnSurfaceDark,
+    surfaceVariant = SapphireSurfaceVariantDark,
+    onSurfaceVariant = SapphireOnSurfaceVariantDark,
+    error = SapphireErrorDark,
+    onError = SapphireOnErrorDark,
+    outline = SapphireOutlineDark
 )
 
-// Define local light theme for completeness
-private val LightCosmicColorScheme = CosmicColorScheme
+private val LightSapphireColorScheme = lightColorScheme(
+    primary = SapphirePrimary,
+    onPrimary = SapphireOnPrimary,
+    primaryContainer = SapphirePrimaryContainer,
+    onPrimaryContainer = SapphireOnPrimaryContainer,
+    secondary = SapphireSecondary,
+    onSecondary = SapphireOnSecondary,
+    secondaryContainer = SapphireSecondaryContainer,
+    onSecondaryContainer = SapphireOnSecondaryContainer,
+    tertiary = SapphireTertiary,
+    onTertiary = SapphireOnTertiary,
+    tertiaryContainer = SapphireTertiaryContainer,
+    onTertiaryContainer = SapphireOnTertiaryContainer,
+    background = SapphireBackground,
+    onBackground = SapphireOnBackground,
+    surface = SapphireSurface,
+    onSurface = SapphireOnSurface,
+    surfaceVariant = SapphireSurfaceVariant,
+    onSurfaceVariant = SapphireOnSurfaceVariant,
+    error = SapphireError,
+    onError = SapphireOnError,
+    outline = SapphireOutline
+)
 
 @Composable
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false, // Disable dynamic colors to preserve our beautiful Cosmic Cyber brand perfectly
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) CosmicColorScheme else LightCosmicColorScheme
+    val colorScheme = if (darkTheme) DarkSapphireColorScheme else LightSapphireColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

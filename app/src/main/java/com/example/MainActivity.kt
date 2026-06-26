@@ -64,16 +64,7 @@ import com.example.ui.ConnectionState
 import com.example.ui.P2PDevice
 import com.example.ui.Screen
 import com.example.ui.ShareViewModel
-import com.example.ui.theme.ElectroCyan
-import com.example.ui.theme.LaserMagenta
 import com.example.ui.theme.MyApplicationTheme
-import com.example.ui.theme.DarkSlate
-import com.example.ui.theme.SlateCard
-import com.example.ui.theme.SpeedGreen
-import com.example.ui.theme.TextMuted
-import com.example.ui.theme.HighPowerBlue
-import com.example.ui.theme.TextLight
-import com.example.ui.theme.GlassBorderColor
 import kotlin.random.Random
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -220,7 +211,7 @@ fun MainScreenContent(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(DarkSlate)
+                .background(MaterialTheme.colorScheme.background)
                 .padding(innerPadding)
         ) {
             // Draw premium soft blurred mesh circles in background
@@ -278,7 +269,7 @@ fun NaqelBottomNavigation(
     onNavigate: (Screen) -> Unit
 ) {
     NavigationBar(
-        containerColor = SlateCard,
+        containerColor = MaterialTheme.colorScheme.surface,
         tonalElevation = 8.dp,
         modifier = Modifier
             .fillMaxWidth()
@@ -290,9 +281,9 @@ fun NaqelBottomNavigation(
             icon = { Icon(Icons.Filled.Share, contentDescription = "الرئيسية") },
             label = { Text("الرئيسية", fontSize = 11.sp, fontWeight = FontWeight.Bold) },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = ElectroCyan,
-                selectedTextColor = ElectroCyan,
-                indicatorColor = Color(0xFF1E293B)
+                selectedIconColor = MaterialTheme.colorScheme.primary,
+                selectedTextColor = MaterialTheme.colorScheme.primary,
+                indicatorColor = MaterialTheme.colorScheme.surfaceVariant
             )
         )
         NavigationBarItem(
@@ -301,9 +292,9 @@ fun NaqelBottomNavigation(
             icon = { Icon(Icons.Outlined.History, contentDescription = "السجل") },
             label = { Text("سجل النقل", fontSize = 11.sp) },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = ElectroCyan,
-                selectedTextColor = ElectroCyan,
-                indicatorColor = Color(0xFF1E293B)
+                selectedIconColor = MaterialTheme.colorScheme.primary,
+                selectedTextColor = MaterialTheme.colorScheme.primary,
+                indicatorColor = MaterialTheme.colorScheme.surfaceVariant
             )
         )
         NavigationBarItem(
@@ -312,9 +303,9 @@ fun NaqelBottomNavigation(
             icon = { Icon(Icons.Outlined.HelpOutline, contentDescription = "كيفية الاستخدام") },
             label = { Text("تعليمات", fontSize = 11.sp) },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = ElectroCyan,
-                selectedTextColor = ElectroCyan,
-                indicatorColor = Color(0xFF1E293B)
+                selectedIconColor = MaterialTheme.colorScheme.primary,
+                selectedTextColor = MaterialTheme.colorScheme.primary,
+                indicatorColor = MaterialTheme.colorScheme.surfaceVariant
             )
         )
     }
@@ -393,15 +384,15 @@ fun DashboardScreen(
                         modifier = Modifier
                             .size(72.dp)
                             .clip(CircleShape)
-                            .background(Brush.radialGradient(listOf(ElectroCyan.copy(alpha = 0.2f), Color.Transparent)))
-                            .border(1.5.dp, ElectroCyan, CircleShape),
+                            .background(Brush.radialGradient(listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f), Color.Transparent)))
+                            .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Filled.WifiTethering,
                             contentDescription = "قناة ناقل",
                             modifier = Modifier.size(36.dp),
-                            tint = ElectroCyan
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                     Spacer(modifier = Modifier.height(14.dp))
@@ -409,12 +400,12 @@ fun DashboardScreen(
                         text = "ناقِل",
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
-                        color = TextLight
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
                         text = "مشاركة ونقل الملفات بأقصى سرعة واي فاي مباشرة",
                         fontSize = 13.sp,
-                        color = TextMuted,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 24.dp)
                     )
@@ -425,11 +416,11 @@ fun DashboardScreen(
         // Active Device info Card
         item {
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(24.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(24.dp))
             ) {
                 Row(
                     modifier = Modifier
@@ -443,15 +434,15 @@ fun DashboardScreen(
                             modifier = Modifier
                                 .size(48.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFFEEF2FF)),
+                                .background(MaterialTheme.colorScheme.primaryContainer),
                             contentAlignment = Alignment.Center
                         ) {
-                            Icon(Icons.Filled.Smartphone, contentDescription = "جهازك", tint = ElectroCyan)
+                            Icon(Icons.Filled.Smartphone, contentDescription = "جهازك", tint = MaterialTheme.colorScheme.primary)
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("الجهاز النشط", fontSize = 12.sp, color = TextMuted)
-                            Text(viewModel.deviceName, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = TextLight)
+                            Text("الجهاز النشط", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(viewModel.deviceName, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
                         }
                     }
                     IconButton(
@@ -459,7 +450,7 @@ fun DashboardScreen(
                             viewModel.deviceName = "جهاز_أندرويد_${Random.nextInt(1000, 9999)}"
                         }
                     ) {
-                        Icon(Icons.Filled.Refresh, contentDescription = "تغيير الاسم", tint = TextMuted)
+                        Icon(Icons.Filled.Refresh, contentDescription = "تغيير الاسم", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             }
@@ -475,7 +466,7 @@ fun DashboardScreen(
                 Button(
                     onClick = { viewModel.currentScreen = Screen.FILE_PICKER },
                     shape = RoundedCornerShape(32.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = ElectroCyan),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier
                         .weight(1f)
                         .height(145.dp)
@@ -512,8 +503,8 @@ fun DashboardScreen(
                         viewModel.currentScreen = Screen.RECEIVER 
                     },
                     shape = RoundedCornerShape(32.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = HighPowerBlue),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE0E7FF)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)),
                     modifier = Modifier
                         .weight(1f)
                         .height(145.dp)
@@ -528,18 +519,18 @@ fun DashboardScreen(
                             modifier = Modifier
                                 .size(54.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFFEEF2FF)),
+                                .background(MaterialTheme.colorScheme.primaryContainer),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 Icons.Filled.FileDownload, 
                                 contentDescription = "استقبال", 
-                                tint = ElectroCyan, 
+                                tint = MaterialTheme.colorScheme.primary, 
                                 modifier = Modifier.size(28.dp)
                             )
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text("استقبال", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
+                        Text("استقبال", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
                     }
                 }
             }
@@ -549,11 +540,11 @@ fun DashboardScreen(
         item {
             Card(
                 onClick = { localFilePicker.launch("*/*") },
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B)),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.dp, ElectroCyan.copy(alpha = 0.3f), RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f), RoundedCornerShape(16.dp))
             ) {
                 Row(
                     modifier = Modifier
@@ -562,9 +553,9 @@ fun DashboardScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Icon(Icons.Filled.FolderOpen, contentDescription = "مستند خارجي", tint = ElectroCyan)
+                    Icon(Icons.Filled.FolderOpen, contentDescription = "مستند خارجي", tint = MaterialTheme.colorScheme.primary)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text("اختر ملفات من ذاكرة الهاتف 📂", fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = ElectroCyan)
+                    Text("اختر ملفات من ذاكرة الهاتف 📂", fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary)
                 }
             }
         }
@@ -572,7 +563,7 @@ fun DashboardScreen(
         // Secondary Utilities Card (Shake to Connect / Reset permissions)
         item {
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -581,7 +572,7 @@ fun DashboardScreen(
                         "الاقتران الفوري الذكي",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
                     
@@ -590,7 +581,7 @@ fun DashboardScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(12.dp))
-                            .background(if (viewModel.isShakingDetectActive) Color(0xFF0369A1) else Color(0xFF334155).copy(alpha = 0.4f))
+                            .background(if (viewModel.isShakingDetectActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
                             .clickable {
                                 if (viewModel.isShakingDetectActive) {
                                     viewModel.isShakingDetectActive = false
@@ -606,18 +597,18 @@ fun DashboardScreen(
                             Icon(
                                 Icons.Filled.Vibration, 
                                 contentDescription = "اهتزاز", 
-                                tint = if (viewModel.isShakingDetectActive) Color.White else ElectroCyan
+                                tint = if (viewModel.isShakingDetectActive) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
-                                Text("الربط بالاهتزاز (Shake Connection)", fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = Color.White)
-                                Text("هز كلا الهاتفين معاً للربط الفوري", fontSize = 11.sp, color = TextMuted)
+                                Text("الربط بالاهتزاز (Shake Connection)", fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = if (viewModel.isShakingDetectActive) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)
+                                Text("هز كلا الهاتفين معاً للربط الفوري", fontSize = 11.sp, color = if (viewModel.isShakingDetectActive) MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f) else MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
                         if (viewModel.isShakingDetectActive) {
-                            CircularProgressIndicator(color = Color.White, modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                            CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
                         } else {
-                            Text("اضغط للتفعيل", fontSize = 11.sp, color = ElectroCyan)
+                            Text("اضغط للتفعيل", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary)
                         }
                     }
                 }
@@ -632,9 +623,9 @@ fun DashboardScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("العمليات الأخيرة", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                    Text("العمليات الأخيرة", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
                     TextButton(onClick = { viewModel.currentScreen = Screen.HISTORY }) {
-                        Text("عرض الكل", color = ElectroCyan, fontSize = 13.sp)
+                        Text("عرض الكل", color = MaterialTheme.colorScheme.primary, fontSize = 13.sp)
                     }
                 }
                 
@@ -643,10 +634,10 @@ fun DashboardScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(80.dp)
-                            .background(SlateCard, RoundedCornerShape(16.dp)),
+                            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("لا يوجد سجل نقل حالي", color = TextMuted, fontSize = 12.sp)
+                        Text("لا يوجد سجل نقل حالي", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
                     }
                 } else {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -687,11 +678,11 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             IconButton(onClick = { viewModel.currentScreen = Screen.DASHBOARD }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = TextLight)
+                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = MaterialTheme.colorScheme.onSurface)
             }
-            Text("مستكشف الملفات", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
+            Text("مستكشف الملفات", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             TextButton(onClick = { viewModel.clearSelections() }) {
-                Text("إلغاء الكل", color = LaserMagenta, fontSize = 13.sp)
+                Text("إلغاء الكل", color = MaterialTheme.colorScheme.error, fontSize = 13.sp)
             }
         }
 
@@ -718,10 +709,10 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                     onClick = { selectedCategory = type },
                     label = { Text(label, fontSize = 12.sp) },
                     colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = ElectroCyan,
-                        selectedLabelColor = Color.White,
-                        containerColor = SlateCard,
-                        labelColor = TextMuted
+                        selectedContainerColor = MaterialTheme.colorScheme.primary,
+                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        labelColor = MaterialTheme.colorScheme.onSurfaceVariant
                     ),
                     modifier = Modifier.padding(2.dp)
                 )
@@ -738,7 +729,7 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
         ) {
             items(filteredFiles) { file ->
                 val isSelected = selectedList.contains(file)
-                val itemBgColor = if (isSelected) ElectroCyan.copy(alpha = 0.08f) else SlateCard
+                val itemBgColor = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.08f) else MaterialTheme.colorScheme.surface
                 
                 Row(
                     modifier = Modifier
@@ -747,7 +738,7 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                         .background(itemBgColor)
                         .border(
                             width = 1.dp,
-                            color = if (isSelected) ElectroCyan.copy(alpha = 0.5f) else GlassBorderColor,
+                            color = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.5f) else MaterialTheme.colorScheme.outline.copy(alpha = 0.1f),
                             shape = RoundedCornerShape(16.dp)
                         )
                         .clickable { viewModel.toggleFileSelection(file) }
@@ -764,7 +755,7 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                             modifier = Modifier
                                 .size(44.dp)
                                 .clip(RoundedCornerShape(10.dp))
-                                .background(Color(0xFFEEF2FF)),
+                                .background(MaterialTheme.colorScheme.primaryContainer),
                             contentAlignment = Alignment.Center
                         ) {
                             val icon = when (file.type) {
@@ -774,7 +765,7 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                                 FileType.DOCUMENT -> Icons.Filled.Description
                                 FileType.AUDIO -> Icons.Filled.AudioFile
                             }
-                            Icon(icon, contentDescription = file.type.name, tint = ElectroCyan)
+                            Icon(icon, contentDescription = file.type.name, tint = MaterialTheme.colorScheme.primary)
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
@@ -782,11 +773,11 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                                 file.name, 
                                 fontSize = 14.sp, 
                                 fontWeight = FontWeight.Bold, 
-                                color = TextLight,
+                                color = MaterialTheme.colorScheme.onSurface,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
-                            Text("${file.sizeFormatted} • ${file.extension}", fontSize = 11.sp, color = TextMuted)
+                            Text("${file.sizeFormatted} • ${file.extension}", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                     // Selection checkmark indicator
@@ -794,11 +785,11 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                         modifier = Modifier
                             .size(24.dp)
                             .clip(CircleShape)
-                            .background(if (isSelected) ElectroCyan else Color(0xFFE2E8F0)),
+                            .background(if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant),
                         contentAlignment = Alignment.Center
                     ) {
                         if (isSelected) {
-                            Icon(Icons.Filled.Check, contentDescription = "تم الاختيار", tint = Color.White, modifier = Modifier.size(16.dp))
+                            Icon(Icons.Filled.Check, contentDescription = "تم الاختيار", tint = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(16.dp))
                         }
                     }
                 }
@@ -814,12 +805,12 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
             }
 
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
             ) {
                 Row(
                     modifier = Modifier
@@ -829,19 +820,19 @@ fun FilePickerScreen(viewModel: ShareViewModel) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text("تم تحديد ${selectedList.size} ملف", fontSize = 13.sp, color = TextMuted)
-                        Text(totalSizeStr, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = ElectroCyan)
+                        Text("تم تحديد ${selectedList.size} ملف", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(totalSizeStr, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                     }
                     Button(
                         onClick = { viewModel.currentScreen = Screen.SENDER },
-                        colors = ButtonDefaults.buttonColors(containerColor = ElectroCyan),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                         shape = RoundedCornerShape(16.dp),
                         modifier = Modifier
                             .height(50.dp)
                             .testTag("proceed_send_button")
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text("إرسال الآن ⚡", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                            Text("إرسال الآن ⚡", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
                         }
                     }
                 }
@@ -878,11 +869,11 @@ fun SenderScreen(viewModel: ShareViewModel) {
                 viewModel.stopDiscovery()
                 viewModel.currentScreen = Screen.FILE_PICKER 
             }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = TextLight)
+                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = MaterialTheme.colorScheme.onSurface)
             }
-            Text("البحث عن أجهزة استقبال", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
+            Text("البحث عن أجهزة استقبال", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             IconButton(onClick = { viewModel.startDiscovery() }) {
-                Icon(Icons.Filled.Refresh, contentDescription = "تحديث الاكتشاف", tint = ElectroCyan)
+                Icon(Icons.Filled.Refresh, contentDescription = "تحديث الاكتشاف", tint = MaterialTheme.colorScheme.primary)
             }
         }
 
@@ -899,10 +890,10 @@ fun SenderScreen(viewModel: ShareViewModel) {
             ) {
                 // Interactive Cam analyzer Simulator
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Filled.QrCodeScanner, contentDescription = "كاميرا", tint = ElectroCyan, modifier = Modifier.size(64.dp))
+                    Icon(Icons.Filled.QrCodeScanner, contentDescription = "كاميرا", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("كاميرا المعاينة والمسح نشطة 📷", fontSize = 15.sp, color = Color.White, fontWeight = FontWeight.Bold)
-                    Text("وجه الكاميرا نحو كود المستقبل للمزامنة والسحب", fontSize = 11.sp, color = TextMuted)
+                    Text("وجه الكاميرا نحو كود المستقبل للمزامنة والسحب", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(modifier = Modifier.height(24.dp))
                     
                     // Direct click link to simulate scan results instantly
@@ -911,13 +902,13 @@ fun SenderScreen(viewModel: ShareViewModel) {
                             isCameraActive = false
                             viewModel.connectViaQR("NaqelShare|GuestPass|192.168.49.12|8888")
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = SpeedGreen)
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
                     ) {
                         Text("محاكاة التقاط الرمز فوراً (للتجربة)", color = Color.White)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { isCameraActive = false }) {
-                        Text("إلغاء الكاميرا", color = LaserMagenta)
+                        Text("إلغاء الكاميرا", color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
@@ -931,21 +922,21 @@ fun SenderScreen(viewModel: ShareViewModel) {
             ) {
                 RadarSonarAnimation()
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Filled.Radar, contentDescription = "رادار", tint = ElectroCyan, modifier = Modifier.size(48.dp))
+                    Icon(Icons.Filled.Radar, contentDescription = "رادار", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("جاري اكتشاف الأجهزة عبر الواي فاي المباشر...", fontSize = 12.sp, color = TextMuted)
+                    Text("جاري اكتشاف الأجهزة عبر الواي فاي المباشر...", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
 
             // Option to connect by custom scan QR
             Card(
                 onClick = { isCameraActive = true },
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
             ) {
                 Row(
                     modifier = Modifier
@@ -955,14 +946,14 @@ fun SenderScreen(viewModel: ShareViewModel) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Filled.QrCodeScanner, contentDescription = "مسح الكود", tint = ElectroCyan)
+                        Icon(Icons.Filled.QrCodeScanner, contentDescription = "مسح الكود", tint = MaterialTheme.colorScheme.primary)
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("مسح كود المستقبل 🤳", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = TextLight)
-                            Text("اقتران فوري بدون انتظار البحث اللاسلكي", fontSize = 11.sp, color = TextMuted)
+                            Text("مسح كود المستقبل 🤳", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                            Text("اقتران فوري بدون انتظار البحث اللاسلكي", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
-                    Icon(Icons.Filled.ArrowForward, contentDescription = "فتح", tint = TextMuted)
+                    Icon(Icons.Filled.ArrowForward, contentDescription = "فتح", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
 
@@ -973,7 +964,7 @@ fun SenderScreen(viewModel: ShareViewModel) {
                 "الأجهزة المكتشفة القريبة",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextLight,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
             )
 
@@ -986,9 +977,9 @@ fun SenderScreen(viewModel: ShareViewModel) {
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        CircularProgressIndicator(color = ElectroCyan, strokeWidth = 2.dp, modifier = Modifier.size(36.dp))
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp, modifier = Modifier.size(36.dp))
                         Spacer(modifier = Modifier.height(14.dp))
-                        Text("بانتظار ظهور الأجهزة المجاورة...", fontSize = 12.sp, color = TextMuted)
+                        Text("بانتظار ظهور الأجهزة المجاورة...", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             } else {
@@ -1002,11 +993,11 @@ fun SenderScreen(viewModel: ShareViewModel) {
                     items(devicesList) { device ->
                         Card(
                             onClick = { viewModel.connectToDevice(device, asSender = true) },
-                            colors = CardDefaults.cardColors(containerColor = SlateCard),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+                                .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
                         ) {
                             Row(
                                 modifier = Modifier
@@ -1020,22 +1011,22 @@ fun SenderScreen(viewModel: ShareViewModel) {
                                         modifier = Modifier
                                             .size(40.dp)
                                             .clip(CircleShape)
-                                            .background(ElectroCyan.copy(alpha = 0.1f)),
+                                            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)),
                                         contentAlignment = Alignment.Center
                                     ) {
-                                        Icon(Icons.Filled.Smartphone, contentDescription = "قرص اتصال", tint = ElectroCyan)
+                                        Icon(Icons.Filled.Smartphone, contentDescription = "قرص اتصال", tint = MaterialTheme.colorScheme.primary)
                                     }
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Column {
-                                        Text(device.name, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = TextLight)
-                                        Text(device.ipAddress, fontSize = 11.sp, color = TextMuted)
+                                        Text(device.name, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                                        Text(device.ipAddress, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     if (device.isGroupOwner) {
-                                        Text("رئيسي ⭐", fontSize = 10.sp, color = ElectroCyan, modifier = Modifier.padding(end = 6.dp))
+                                        Text("رئيسي ⭐", fontSize = 10.sp, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(end = 6.dp))
                                     }
-                                    Icon(Icons.Filled.FlashOn, contentDescription = "اتصال", tint = SpeedGreen)
+                                    Icon(Icons.Filled.FlashOn, contentDescription = "اتصال", tint = MaterialTheme.colorScheme.secondary)
                                 }
                             }
                         }
@@ -1065,9 +1056,9 @@ fun ReceiverScreen(viewModel: ShareViewModel) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             IconButton(onClick = { viewModel.currentScreen = Screen.DASHBOARD }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = TextLight)
+                Icon(Icons.Filled.ArrowBack, contentDescription = "رجوع", tint = MaterialTheme.colorScheme.onSurface)
             }
-            Text("قناة الاستقبال النشطة", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
+            Text("قناة الاستقبال النشطة", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             Box(Modifier.size(40.dp))
         }
 
@@ -1082,20 +1073,20 @@ fun ReceiverScreen(viewModel: ShareViewModel) {
             // Hotspot/SSID Info card
             item {
                 Card(
-                    colors = CardDefaults.cardColors(containerColor = SlateCard),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(1.dp, GlassBorderColor, RoundedCornerShape(20.dp))
+                        .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(20.dp))
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text("بيانات البث المباشر (P2P Hotspot)", fontSize = 12.sp, color = TextMuted)
+                        Text("بيانات البث المباشر (P2P Hotspot)", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(6.dp))
-                        Text("شبكة ناقل: Naqel_Hotspot_Express", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = TextLight)
-                        Text("الرقم السري: NaqelPass_1234", fontSize = 12.sp, color = ElectroCyan)
+                        Text("شبكة ناقل: Naqel_Hotspot_Express", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                        Text("الرقم السري: NaqelPass_1234", fontSize = 12.sp, color = MaterialTheme.colorScheme.primary)
                     }
                 }
             }
@@ -1103,12 +1094,12 @@ fun ReceiverScreen(viewModel: ShareViewModel) {
             // Premium custom simulated QR code
             item {
                 Card(
-                    colors = CardDefaults.cardColors(containerColor = SlateCard),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     shape = RoundedCornerShape(24.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
                     modifier = Modifier
                         .size(240.dp)
-                        .border(1.dp, GlassBorderColor, RoundedCornerShape(24.dp))
+                        .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(24.dp))
                 ) {
                     Box(
                         modifier = Modifier
@@ -1126,7 +1117,7 @@ fun ReceiverScreen(viewModel: ShareViewModel) {
                 Text(
                     text = "امسح رمز الاستقرار هذا من الهاتف المرسل لتأسيس الاتصال المقبسي الآمن عالي السرعة تلقائياً",
                     fontSize = 13.sp,
-                    color = TextMuted,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                     lineHeight = 20.sp,
                     modifier = Modifier.padding(horizontal = 12.dp)
@@ -1144,14 +1135,14 @@ fun ReceiverScreen(viewModel: ShareViewModel) {
                             asSender = false
                         )
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = HighPowerBlue),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE0E7FF)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)),
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Icon(Icons.Filled.PlayArrow, contentDescription = "محاكاة", tint = ElectroCyan)
+                    Icon(Icons.Filled.PlayArrow, contentDescription = "محاكاة", tint = MaterialTheme.colorScheme.primary)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("البدء الفوري (محاكاة استقبال ملفات ومحرر)", color = TextLight, fontWeight = FontWeight.Bold)
+                    Text("البدء الفوري (محاكاة استقبال ملفات ومحرر)", color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
                 }
             }
 
@@ -1170,11 +1161,23 @@ fun ActiveTransferScreen(
 ) {
     val progressPercent = state.progress.toInt()
     val isSending = state.direction == "SEND"
+    
+    val backgroundColor = MaterialTheme.colorScheme.background
+    val roleBannerBg = if (isSending) MaterialTheme.colorScheme.error.copy(alpha = 0.15f) else MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f)
+    val roleBannerBorder = if (isSending) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
+    val roleBannerText = if (isSending) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
+    val progressOuterCircle = MaterialTheme.colorScheme.surfaceVariant
+    val progressArc = if (isSending) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+    val onSurface = MaterialTheme.colorScheme.onSurface
+    val onSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant
+    val secondaryColor = MaterialTheme.colorScheme.secondary
+    val surfaceColor = MaterialTheme.colorScheme.surface
+    val primaryColor = MaterialTheme.colorScheme.primary
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DarkSlate)
+            .background(backgroundColor)
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -1186,13 +1189,13 @@ fun ActiveTransferScreen(
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(14.dp))
-                    .background(if (isSending) LaserMagenta.copy(alpha = 0.15f) else SpeedGreen.copy(alpha = 0.15f))
-                    .border(1.dp, if (isSending) LaserMagenta else SpeedGreen, RoundedCornerShape(14.dp))
+                    .background(roleBannerBg)
+                    .border(1.dp, roleBannerBorder, RoundedCornerShape(14.dp))
                     .padding(horizontal = 14.dp, vertical = 6.dp)
             ) {
                 Text(
                     text = if (isSending) "جاري إرسال الملفات" else "جاري استقبال الملفات",
-                    color = if (isSending) LaserMagenta else SpeedGreen,
+                    color = roleBannerText,
                     fontWeight = FontWeight.Bold,
                     fontSize = 12.sp
                 )
@@ -1208,7 +1211,7 @@ fun ActiveTransferScreen(
                 // Outer circle tracker background
                 Canvas(modifier = Modifier.fillMaxSize()) {
                     drawCircle(
-                        color = Color(0xFF1E293B),
+                        color = progressOuterCircle,
                         style = Stroke(width = 14.dp.toPx())
                     )
                 }
@@ -1216,7 +1219,7 @@ fun ActiveTransferScreen(
                 // Infinite smooth brush tracer progress
                 Canvas(modifier = Modifier.fillMaxSize()) {
                     drawArc(
-                        color = if (isSending) LaserMagenta else ElectroCyan,
+                        color = progressArc,
                         startAngle = -90f,
                         sweepAngle = (state.progress / 100f) * 360f,
                         useCenter = false,
@@ -1229,12 +1232,12 @@ fun ActiveTransferScreen(
                         text = "$progressPercent%",
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = onSurface
                     )
                     Text(
                         text = state.transferSpeed,
                         fontSize = 14.sp,
-                        color = SpeedGreen,
+                        color = secondaryColor,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -1246,14 +1249,14 @@ fun ActiveTransferScreen(
             Text(
                 "ملف ${state.index} من أصل ${state.totalCount}",
                 fontSize = 13.sp,
-                color = TextMuted
+                color = onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 state.fileName,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White,
+                color = onSurface,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -1264,7 +1267,7 @@ fun ActiveTransferScreen(
 
             // Peer active device info block
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = surfaceColor),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -1274,15 +1277,15 @@ fun ActiveTransferScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text("الطرف المتصل", fontSize = 11.sp, color = TextMuted)
-                        Text(connectedDevice?.name ?: "جهاز أندرويد", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text("الطرف المتصل", fontSize = 11.sp, color = onSurfaceVariant)
+                        Text(connectedDevice?.name ?: "جهاز أندرويد", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = onSurface)
                     }
-                    Icon(Icons.Filled.Link, contentDescription = "رابط نشط", tint = ElectroCyan)
+                    Icon(Icons.Filled.Link, contentDescription = "رابط نشط", tint = primaryColor)
                 }
             }
 
             Spacer(modifier = Modifier.height(18.dp))
-            Text("يرجى إبقاء التطبيق مفتوحاً وعدم تدوير الشاشة لضمان أقصى كفاءة للمقبس", fontSize = 11.sp, color = TextMuted, textAlign = TextAlign.Center)
+            Text("يرجى إبقاء التطبيق مفتوحاً وعدم تدوير الشاشة لضمان أقصى كفاءة للمقبس", fontSize = 11.sp, color = onSurfaceVariant, textAlign = TextAlign.Center)
         }
     }
 }
@@ -1315,9 +1318,9 @@ fun HistoryScreen(viewModel: ShareViewModel) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text("سجل عمليات النقل والمشاركة", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
+            Text("سجل عمليات النقل والمشاركة", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             TextButton(onClick = { viewModel.clearHistory() }) {
-                Text("تفريغ", color = LaserMagenta, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text("تفريغ", color = MaterialTheme.colorScheme.error, fontSize = 13.sp, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -1330,31 +1333,31 @@ fun HistoryScreen(viewModel: ShareViewModel) {
         ) {
             // Total Sent Card
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .weight(1f)
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
-                    Text("إجمالي المرسل 📤", fontSize = 11.sp, color = TextMuted)
+                    Text("إجمالي المرسل 📤", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(totalSentStr, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ElectroCyan)
+                    Text(totalSentStr, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                 }
             }
 
             // Total Received Card
             Card(
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .weight(1f)
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
-                    Text("إجمالي المستلم 📥", fontSize = 11.sp, color = TextMuted)
+                    Text("إجمالي المستلم 📥", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(totalRecStr, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = SpeedGreen)
+                    Text(totalRecStr, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.secondary)
                 }
             }
         }
@@ -1370,9 +1373,9 @@ fun HistoryScreen(viewModel: ShareViewModel) {
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Outlined.History, contentDescription = "خال", tint = TextMuted, modifier = Modifier.size(48.dp))
+                    Icon(Icons.Outlined.History, contentDescription = "خال", tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("لا يوجد سجلات حتى الآن", fontSize = 13.sp, color = TextMuted)
+                    Text("لا يوجد سجلات حتى الآن", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         } else {
@@ -1408,8 +1411,8 @@ fun TransferHistoryItem(transfer: TransferEntity) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(SlateCard)
-            .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
             .padding(14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -1422,13 +1425,13 @@ fun TransferHistoryItem(transfer: TransferEntity) {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .background(if (isSend) LaserMagenta.copy(alpha = 0.1f) else SpeedGreen.copy(alpha = 0.1f)),
+                    .background(if (isSend) MaterialTheme.colorScheme.error.copy(alpha = 0.1f) else MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = if (isSend) Icons.Filled.ArrowUpward else Icons.Filled.ArrowDownward,
                     contentDescription = transfer.direction,
-                    tint = if (isSend) LaserMagenta else SpeedGreen,
+                    tint = if (isSend) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -1438,14 +1441,14 @@ fun TransferHistoryItem(transfer: TransferEntity) {
                     transfer.fileName, 
                     fontSize = 13.sp, 
                     fontWeight = FontWeight.Bold, 
-                    color = TextLight,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = "${transfer.peerName} • $sizeStr • $timeFormatted",
                     fontSize = 11.sp,
-                    color = TextMuted
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
@@ -1454,12 +1457,12 @@ fun TransferHistoryItem(transfer: TransferEntity) {
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(8.dp))
-                .background(if (transfer.status == "COMPLETED") SpeedGreen.copy(alpha = 0.15f) else LaserMagenta.copy(alpha = 0.15f))
+                .background(if (transfer.status == "COMPLETED") MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f) else MaterialTheme.colorScheme.error.copy(alpha = 0.15f))
                 .padding(horizontal = 8.dp, vertical = 4.dp)
         ) {
             Text(
                 text = if (transfer.status == "COMPLETED") "مكتمل" else "جاري",
-                color = if (transfer.status == "COMPLETED") SpeedGreen else LaserMagenta,
+                color = if (transfer.status == "COMPLETED") MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.error,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -1496,8 +1499,8 @@ fun HelpScreen() {
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         item {
-            Text("قاعدة المعرفة والتعليمات", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextLight)
-            Text("احصل على إجابات سريعة لحلول ومعضلات نقل الملفات اللاسلكية", fontSize = 11.sp, color = TextMuted)
+            Text("قاعدة المعرفة والتعليمات", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+            Text("احصل على إجابات سريعة لحلول ومعضلات نقل الملفات اللاسلكية", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(modifier = Modifier.height(6.dp))
         }
 
@@ -1505,11 +1508,11 @@ fun HelpScreen() {
             var isExpanded by remember { mutableStateOf(false) }
             Card(
                 onClick = { isExpanded = !isExpanded },
-                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.dp, GlassBorderColor, RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Row(
@@ -1517,16 +1520,16 @@ fun HelpScreen() {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(faq.question, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = TextLight, modifier = Modifier.weight(1f))
+                        Text(faq.question, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, modifier = Modifier.weight(1f))
                         Icon(
                             imageVector = if (isExpanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
                             contentDescription = "توسيع",
-                            tint = ElectroCyan
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                     if (isExpanded) {
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(faq.answer, fontSize = 12.sp, color = TextMuted, lineHeight = 18.sp)
+                        Text(faq.answer, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 18.sp)
                     }
                 }
             }
@@ -1561,14 +1564,16 @@ fun RadarSonarAnimation() {
         label = "opacityPulse"
     )
 
+    val primaryColor = MaterialTheme.colorScheme.primary
+
     Canvas(modifier = Modifier.size(240.dp)) {
         drawCircle(
-            color = ElectroCyan.copy(alpha = opacityRatio),
+            color = primaryColor.copy(alpha = opacityRatio),
             radius = size.width / 2 * pulseRatio,
             style = Stroke(width = 2.dp.toPx())
         )
         drawCircle(
-            color = ElectroCyan.copy(alpha = opacityRatio * 0.4f),
+            color = primaryColor.copy(alpha = opacityRatio * 0.4f),
             radius = size.width / 2 * (pulseRatio * 0.7f),
             style = Stroke(width = 1.dp.toPx())
         )
@@ -1578,14 +1583,18 @@ fun RadarSonarAnimation() {
 // Gorgeous stylized Canvas QR Code
 @Composable
 fun QRStylizedCanvas(payload: String) {
+    val onSurface = MaterialTheme.colorScheme.onSurface
+    val primaryColor = MaterialTheme.colorScheme.primary
+    val surfaceColor = MaterialTheme.colorScheme.surface
+
     Canvas(modifier = Modifier.fillMaxSize()) {
         val totalGrid = 15
         val cellSize = size.width / totalGrid
         
         // Draw 3 primary corner finder patterns (Classic QR signature)
-        drawCornerFinder(0f, 0f, cellSize) // top left
-        drawCornerFinder((totalGrid - 5) * cellSize, 0f, cellSize) // top right
-        drawCornerFinder(0f, (totalGrid - 5) * cellSize, cellSize) // bottom left
+        drawCornerFinder(0f, 0f, cellSize, primaryColor, surfaceColor) // top left
+        drawCornerFinder((totalGrid - 5) * cellSize, 0f, cellSize, primaryColor, surfaceColor) // top right
+        drawCornerFinder(0f, (totalGrid - 5) * cellSize, cellSize, primaryColor, surfaceColor) // bottom left
 
         // Populate randomized central blocks for highly realistic representation
         val randomBits = listOf(
@@ -1596,7 +1605,7 @@ fun QRStylizedCanvas(payload: String) {
 
         for ((col, row) in randomBits) {
             drawRect(
-                color = TextLight,
+                color = onSurface,
                 topLeft = Offset(col * cellSize, row * cellSize),
                 size = androidx.compose.ui.geometry.Size(cellSize, cellSize)
             )
@@ -1607,28 +1616,30 @@ fun QRStylizedCanvas(payload: String) {
 private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawCornerFinder(
     x: Float,
     y: Float,
-    cellSize: Float
+    cellSize: Float,
+    primaryColor: Color,
+    surfaceColor: Color
 ) {
     val finderPixels = 5
     val length = finderPixels * cellSize
     
     // Outer big black/light box
     drawRect(
-        color = ElectroCyan,
+        color = primaryColor,
         topLeft = Offset(x, y),
         size = androidx.compose.ui.geometry.Size(length, length)
     )
     
     // Middle background mask box
     drawRect(
-        color = SlateCard,
+        color = surfaceColor,
         topLeft = Offset(x + cellSize, y + cellSize),
         size = androidx.compose.ui.geometry.Size(length - cellSize * 2, length - cellSize * 2)
     )
     
     // Core center anchor
     drawRect(
-        color = ElectroCyan,
+        color = primaryColor,
         topLeft = Offset(x + cellSize * 1.5f, y + cellSize * 1.5f),
         size = androidx.compose.ui.geometry.Size(length - cellSize * 3, length - cellSize * 3)
     )
